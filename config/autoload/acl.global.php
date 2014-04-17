@@ -10,7 +10,7 @@ return array(
       'resources' => array(
         'allow' => array(
             'Users\Controller\Users' =>array(
-              'index' => 'admin',
+              'index' => 'guest',
               'update' => 'admin',
               'delete' => 'admin', 
               'register' => 'admin',
