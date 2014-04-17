@@ -12,6 +12,7 @@ namespace Auth\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Auth\Form\LoginForm;
 use Auth\Form\LoginFilter;
+use Zend\View\Model\ViewModel;
 
 use Zend\Authentication\Result;
 use Zend\Authentication\AuthenticationService;
@@ -93,10 +94,10 @@ class AuthController extends AbstractActionController
                                 }
            }
         }
-        return array(
+        return new ViewModel(array(
             'form' => $form,
             'messages' => $messages
-        );
+        ));
     }
 
     public function logoutAction()
