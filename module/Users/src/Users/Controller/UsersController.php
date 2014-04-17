@@ -211,7 +211,56 @@ class UsersController extends AbstractActionController
     		$form->setData($request->getPost());
     		if($form->isValid()){
                     $data = $form->getData();
-                    //obraditi podatke
+                    
+                unset($data['submit']);
+                unset($data['captcha']);
+                unset($data['secret']);
+                    
+                
+                    
+                    
+                    $user = $this->getModel()->getUserByEmail($data['email']);
+                    
+                    if($user == false){
+                       return  $this->redirect()->toRoute('users/default', array('conttrller' => 'users', 'action' => 'forgotenPassword'));
+                    }
+                    // mail i pass
+                        $sm = $this->getServiceLocator();
+                    $pass = $this->generateDynamicSalt();
+                    $config = $sm->get('Config');
+                    $salt = $config['static_salt'];
+
+
+                $blockCipher = new BlockCipher(new Mcrypt(array('algo' => 'aes')));
+                $blockCipher->setKey($salt);
+                $data['password'] = $blockCipher->encrypt($pass);
+               
+                $user = $this->getModel()->getUsersTable()->select(array('username' => $data['username']))->current();
+               
+                
+                
+              
+                    
+                    $this->getModel()->getUsersTable()->update($data, array('id', $users->id));
+                    
+                $nas_mail = $config['email_nas'];
+                $site = $config['site_name'];
+                
+                
+                $transport = $this->getServiceLocator()->get('mail.transport');
+                 
+                $message =  new Message();
+                
+                $this->getRequest()->getServer();
+                
+                $message->addFrom($nas_mail)
+                        ->addTo($user->email)
+                        ->setSubject("Registracija na". $site)
+                        ->setBody("<h1>Reset passworda na ". $site ."</h1>
+                        <p>Uspesno ste resetovali password, vas novi password je: ".$pass."</p>");
+                
+                $transport->send($message);
+                return $this->redirect()->toRoute('home');
                     
     			
     		}

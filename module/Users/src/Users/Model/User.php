@@ -56,4 +56,15 @@ class User {
     	$data['active'] = 1;
     	$this->getUsersTable()->update($data,array('id' => $id));
     }
+    public function getUserByEmail($email){
+        
+        $rowset = $this->getUsersTable()->select(array('email' => $email));
+        $row = $rowset->current();
+        
+        if(!$row){
+            $row = false;
+        }
+        return $row;
+        
+    }
 }
