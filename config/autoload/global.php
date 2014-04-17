@@ -14,11 +14,11 @@
 return array(
    'db' => array(
       'driver'         => 'Pdo',
-      'dsn'            => 'mysql:dbname=zend;host=localhost',
+      'dsn'            => 'mysql:dbname=zf2cloud;host=zf2cloud-db.my.phpcloud.com',
        'driver_options' => array(
             PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
         ),
-        'username' => 'nemesis',
+        'username' => 'zf2cloud',
         'password' => 'poiu123321',
    ),
    'service_manager' => array(
