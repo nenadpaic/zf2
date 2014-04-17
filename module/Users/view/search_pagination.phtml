@@ -1,0 +1,36 @@
+<!--
+See http://developer.yahoo.com/ypatterns/pattern.php?pattern=searchpagination
+-->
+
+<?php if ($this->pageCount): ?>
+<div class="paginationControl">
+<!-- Previous page link -->
+<?php if (isset($this->previous)): ?>
+  <a href="<?php echo $this->url($this->route, array('page' => $this->previous)); ?>">
+   <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-chevron-left"></span> Previous</button>
+  </a> 
+<?php else: ?>
+  <span class="disabled"><button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-chevron-left"></span>Previous</button></span> 
+<?php endif; ?>
+
+<!-- Numbered page links -->
+<?php foreach ($this->pagesInRange as $page): ?>
+  <?php if ($page != $this->current): ?>
+    <a href="<?php echo $this->url($this->route, array('page' => $page)); ?>">
+        <button class="btn btn-default btn-sm" ><?php echo $page; ?></button>
+    </a> 
+  <?php else: ?>
+    <button class="btn btn-primary btn-sm"><?php echo $page; ?> </button>
+  <?php endif; ?>
+<?php endforeach; ?>
+
+<!-- Next page link -->
+<?php if (isset($this->next)): ?>
+  <a href="<?php echo $this->url($this->route, array('page' => $this->next)); ?>">
+  <button class="btn btn-primary btn-sm">  Next <span class="glyphicon glyphicon-chevron-right"></span></button>
+  </a>
+<?php else: ?>
+  <span class="disabled"><button class="btn btn-default btn-sm">  Next  <span class="glyphicon glyphicon-chevron-right"></span></button></span>
+<?php endif; ?>
+</div>
+<?php endif; ?>
