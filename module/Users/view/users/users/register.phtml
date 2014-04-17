@@ -1,0 +1,83 @@
+<?php
+$this->headTitle('Registracija');
+$this->headMeta()->appendName('description', 'Registrujete se na nasem sajtu i uronite u svet popusta i akcija');
+$form = $this->form;
+
+
+$form->setAttribute('action', $this->url('users/default', array('controller' => 'users', 'action' => 'register')));
+$form->setAttribute('method', 'post');
+$form->setAttribute('class', 'form-signin');
+$form->setAttribute('role', 'form');
+$form->prepare(); ?>
+<div class="row well">
+   
+    <div class="col-md-6 ">
+<?php
+
+echo $this->form()->openTag($form); ?>
+<p>
+    <h2 class="form-signin-heading">Podatci korisnika</h2>
+<?php
+
+echo $this->formRow($form->get('username'));
+?>
+</p>
+
+<p>
+<?php echo $this->formRow($form->get('password')); ?>
+</p>
+<p>
+<?php echo $this->formRow($form->get('confirm')); ?>
+</p>
+<p>
+<?php echo $this->formRow($form->get('ime')); ?>
+</p>
+<p>
+<?php echo $this->formRow($form->get('prezime')); ?>
+</p>
+
+
+
+
+    </div>
+    <div class="col-md-6">
+	<h2 class="form-signin-heading">Kontakt podatci</h2>
+	
+	<p>
+<?php echo $this->formRow($form->get('adresa')); ?>
+</p>
+<p>
+<?php echo $this->formRow($form->get('grad')); ?>
+</p>
+<p>
+<?php echo $this->formRow($form->get('zip')); ?>
+</p>
+<p>
+<?php echo $this->formRow($form->get('tel')); ?>
+</p>
+<p>
+<?php echo $this->formRow($form->get('email')); ?>
+</p>
+	</div>
+	</div>
+	<div class="row well">
+		<div class="col-md 4"></div>
+		<div class="col-md 4"><?php echo $this->formRow($form->get('captcha')); 
+		echo $this->formHidden($form->get('secret'));?></div>
+		<div class="col-md 4"></div>
+	
+	</div> 
+	<div class="row well">
+	<div class="col-md-12" style="text-align:center;">
+	<p>
+<?php echo $this->formRow($form->get('submit')); ?>
+ &nbsp; <input type="reset" value="Reset" class="btn btn-warning btn-md" />
+</p>
+
+	<?php
+echo $this->form()->closeTag();
+
+
+?>
+</div>
+</div>

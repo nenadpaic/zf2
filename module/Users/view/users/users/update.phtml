@@ -1,0 +1,75 @@
+<?php
+$form = $this->form;
+
+
+$form->setAttribute('users', $this->url('users', array('controller' => 'users', 'action' => 'update', 'id' => $id)));
+$form->setAttribute('method', 'post');
+$form->setAttribute('class', 'form-signin');
+$form->setAttribute('role', 'form');
+$form->prepare(); ?>
+<div class="row well">
+   
+    <div class="col-md-6 ">
+<?php
+
+echo $this->form()->openTag($form); ?>
+<p>
+    <h2 class="form-signin-heading">Podatci korisnika</h2>
+<?php
+
+echo $this->formRow($form->get('username'));
+?>
+</p>
+<p>
+<?php echo $this->formRow($form->get('ime')); ?>
+</p>
+<p>
+<?php echo $this->formRow($form->get('prezime')); ?>
+</p>
+
+<p>
+<?php echo $this->formRow($form->get('role')); ?>
+</p>
+<p>
+<?php echo $this->formRow($form->get('active')); ?>
+</p>
+
+
+    </div>
+    <div class="col-md-6">
+	<h2 class="form-signin-heading">Kontakt podatci</h2>
+	
+	<p>
+<?php echo $this->formRow($form->get('adresa')); ?>
+</p>
+<p>
+<?php echo $this->formRow($form->get('grad')); ?>
+</p>
+<p>
+<?php echo $this->formRow($form->get('zip')); ?>
+</p>
+<p>
+<?php echo $this->formRow($form->get('tel')); ?>
+</p>
+<p>
+<?php echo $this->formRow($form->get('email')); ?>
+</p>
+	</div>
+	</div>
+	<div class="row well">
+	<div class="col-md-12" style="text-align:center;">
+	<p>
+<?php echo $this->formRow($form->get('submit')); ?>
+ &nbsp; <input type="reset" value="Reset" class="btn btn-warning btn-md" />
+</p>
+
+	<?php
+echo $this->form()->closeTag();
+
+
+?>
+</div>
+</div>
+
+
+

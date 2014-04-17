@@ -45,7 +45,7 @@ return array(
   
     'view_manager' => array(
         'template_path_stack' => array(
-            'auth' => __DIR__ . '/../view',
+           'users' =>  __DIR__ . '/../view',
         ),
     ),
 );

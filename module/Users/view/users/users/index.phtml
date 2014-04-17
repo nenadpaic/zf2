@@ -1,0 +1,71 @@
+
+<div class="row">
+	<div class="col-md-12">
+		<table class="table table-striped">
+			<tr>
+				<th>Id</th>
+				<th>Username</th>
+				<th>Ime</th>
+				<th>Prezime</th>
+				<th>Email</th>
+				<th>Active</th>
+				<th>Role</th>
+				<th>Actions</th>
+
+			</tr>
+				<?php
+					foreach ($this->paginator as $p){ ?>
+					<tr>
+						
+						<td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal<?php echo $p['id']; ?>"><?php echo $p['id']; ?></button></td>
+						<td><?php echo $p['username']; ?></td>
+						<td><?php echo $p['ime']; ?></td>
+						<td><?php echo $p['prezime']; ?></td>
+						<td><a href="mailto:<?php echo $p['email']; ?>"><?php echo $p['email']; ?></a></td>
+						<td><?php echo $p['active']; ?></td>
+						<td><?php echo $p['role']; ?></td>
+						<td><a href="<?php echo $this->url('users/default', array('controller' => 'users', 'action' => 'update', 'id' => $p['id'])); ?>"><button class="btn btn-primary btn-sm">Edit</button></a>
+						<a href="<?php echo $this->url('users/default', array('controller' => 'users', 'action' => 'delete', 'id' => $p['id'])) ?>" onClick="return confirm('Da li ste sigurni da zelite da obrisete korisnika?')"><button class="btn btn-primary btn-sm">Delete</button></a></td>
+						
+						<div class="modal fade" id="myModal<?php echo $p['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+						<div class="modal-content">
+						<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								<h4 class="modal-title" id="myModalLabel"><?php echo $p['username'] ?> profil</h4>
+								</div>
+      <div class="modal-body">
+       <p><strong>Username:</strong> <?php echo $p['username']; ?></p>
+	   <p><strong>Ime:</strong> <?php echo $p['ime']; ?></p>
+	   <p><strong>Prezime:</strong> <?php echo $p['prezime']; ?></p>
+	   <p><strong>Adresa:</strong> <?php echo $p['adresa']; ?></p>
+	   <p><strong>Grad:</strong> <?php echo $p['grad']; ?></p>
+	   <p><strong>Zip:</strong> <?php echo $p['zip']; ?></p>
+	   <p><strong>Br tel:</strong> <?php echo $p['tel']; ?></p>
+	   <p><strong>Email:</strong> <?php echo $p['email']; ?></p>
+	   <p><strong>Active:</strong> <?php echo $p['active']; ?></p>
+	   <p><strong>Role:</strong> <?php echo $p['role']; ?></p>
+	   <p><strong>Date created:</strong> <?php echo $p['date_created']; ?></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+	
+	
+	
+					</tr>
+		
+<?php  
+}
+
+?>
+</table>
+<?php echo $this->paginationControl($this->paginator,
+                                    'Sliding', // All, Elastic, Jumping, Sliding
+                                    'search_pagination.phtml', array('route' => 'users/paginator')); ?>
+</div>
+</div>
