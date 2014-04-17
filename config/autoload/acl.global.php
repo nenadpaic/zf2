@@ -10,14 +10,7 @@ return array(
       'resources' => array(
         'allow' => array(
             'Users\Controller\Users' =>array(
-              'index' => 'guest',
-              'update' => 'admin',
-              'delete' => 'admin', 
-              'register' => 'admin',
-              'success' => 'admin',
-            'confirmEmail' => 'admin',
-            'errorConfirm' => 'admin',
-            'forgotenPassword' => 'admin',
+              'all' => 'guest',
             ),
             'Application\Controller\Index' => array(
                'all' => 'guest', 
