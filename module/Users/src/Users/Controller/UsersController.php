@@ -66,7 +66,7 @@ class UsersController extends AbstractActionController
                
                $this->getModel()->getUsersTable()->update($data, array('id' => $id));
                
-               return $this->redirect()->toRoute('users/default', array('controoler' => 'users', 'action' => 'index'));
+               return $this->redirect()->toRoute('users/default', array('controller' => 'users', 'action' => 'index'));
                
            }
            
@@ -83,7 +83,7 @@ class UsersController extends AbstractActionController
         if(!$id || $id < 1) $this->redirect ()->toRoute ('users');
         $this->getModel()->getUsersTable()->delete(array('id' => $id));
         
-       return $this->redirect()->toRoute('users/default', array('controoler' => 'users', 'action' => 'index'));  
+       return $this->redirect()->toRoute('users/default', array('controller' => 'users', 'action' => 'index'));  
     }
     public function registerAction(){
          
@@ -222,7 +222,7 @@ class UsersController extends AbstractActionController
                     $user = $this->getModel()->getUserByEmail($data['email']);
                     
                     if($user == false){
-                       return  $this->redirect()->toRoute('users/default', array('conttrller' => 'users', 'action' => 'forgotenPassword'));
+                       return  $this->redirect()->toRoute('users/default', array('controller' => 'users', 'action' => 'forgotenPassword'));
                     }
                     // mail i pass
                         $sm = $this->getServiceLocator();
