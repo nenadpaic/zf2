@@ -79,7 +79,7 @@ class UsersController extends AbstractActionController
         
     public function deleteAction(){
         
-        $id = (int) $this->params()->fromRoute('id');
+        $id = (int) $this->params()->fromRoute('id');bla
         if(!$id || $id < 1) $this->redirect ()->toRoute ('users');
         $this->getModel()->getUsersTable()->delete(array('id' => $id));
         
